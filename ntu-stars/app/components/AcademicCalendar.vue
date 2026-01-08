@@ -22,11 +22,11 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue';
-import { today, getDayOfWeek, type DateValue } from '@internationalized/date';
+import { today, getDayOfWeek, type DateValue, type CalendarDate } from '@internationalized/date';
 
 const todayDate = ref<DateValue>(today('Asia/Singapore'));
 
 const isWeekend = (date: DateValue): boolean => getDayOfWeek(date, 'en-US') % 6 === 0;
 
-const isToday = (date: DateValue): boolean => date.compare(todayDate.value) === 0;
+const isToday = (date: DateValue): boolean => date.compare(todayDate.value as CalendarDate) === 0;
 </script>
