@@ -31,14 +31,3 @@
         </template>
     </UPage>
 </template>
-
-<style scoped>
-@import "tailwindcss";
-
-ul {
-    @apply space-y-4 lg:space-y-6 xl:space-y-10;
-}
-li p {
-    @apply text-lg text-indigo-200 underline lg:text-xl xl:text-2xl font-light;
-}
-</style>
