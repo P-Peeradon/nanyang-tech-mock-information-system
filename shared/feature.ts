@@ -1,0 +1,1 @@
+export default interface Feature { name: string, page: string };

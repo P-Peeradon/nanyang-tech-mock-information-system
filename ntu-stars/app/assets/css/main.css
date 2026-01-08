@@ -1,0 +1,46 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+@theme static {
+    --font-sans: 'Public Sans', sans-serif;
+    --font-inter: 'Inter', sans-serif;
+
+    /* Imperial Color Palette */
+    --color-imperial-50: #e6e9f6;
+    --color-imperial-100: #c1c9ec;
+    --color-imperial-200: #93a2e0;
+    --color-imperial-300: #5a72d3;
+    --color-imperial-400: #254cc6;
+    --color-imperial-500: #002395; /* Your main brand color */
+    --color-imperial-600: #001e7e;
+    --color-imperial-700: #001967;
+    --color-imperial-800: #001552;
+    --color-imperial-900: #00103e;
+    --color-imperial-950: #000a29;
+
+    /* Cardinal Color Palette */
+    --color-cardinal-50: #fee6e9;
+    --color-cardinal-100: #fdced3;
+    --color-cardinal-200: #f9a4ac;
+    --color-cardinal-300: #f1717e;
+    --color-cardinal-400: #e24155;
+    --color-cardinal-500: #c41e3a;
+    --color-cardinal-600: #a91a32;
+    --color-cardinal-700: #851628;
+    --color-cardinal-800: #67101e;
+    --color-cardinal-900: #490b16;
+    --color-cardinal-950: #2a050b;
+
+    /* Gold Color Palette */
+    --color-gold-50: #fbf5e5;
+    --color-gold-100: #f2e7c4;
+    --color-gold-200: #e9d89d;
+    --color-gold-300: #e0c872;
+    --color-gold-400: #dac052;
+    --color-gold-500: #d4af37;
+    --color-gold-600: #b79730;
+    --color-gold-700: #907826;
+    --color-gold-800: #6a581d;
+    --color-gold-900: #443612;
+    --color-gold-950: #251c08;
+}
