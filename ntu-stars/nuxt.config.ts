@@ -4,6 +4,8 @@ export default defineNuxtConfig({
         '../ntu-services'
     ],
 
+    modules: ['@pinia/nuxt'],
+
     devtools: {
         enabled: true
     },
