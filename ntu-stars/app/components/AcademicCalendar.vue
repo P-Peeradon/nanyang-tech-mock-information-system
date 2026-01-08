@@ -9,8 +9,9 @@
             <template #day="{ day }">
                 <div
                     class="w-full h-full flex items-center justify-center rounded-full"
+                    :class="isToday(day) ? 'border-2 border-imperial-600' : ''"
                 >
-                    <span :class="isWeekend(day) ? 'text-red-600' : 'text-black' + isToday(day) ? ' border-2 border-imperial-600' : ''">
+                    <span :class="(isWeekend(day) ? 'text-red-600' : 'text-black')">
                         {{ day.day }}
                     </span>
                 </div>
@@ -27,5 +28,5 @@ const todayDate = ref<DateValue>(today('Asia/Singapore'));
 
 const isWeekend = (date: DateValue): boolean => getDayOfWeek(date, 'en-US') % 6 === 0;
 
-const isToday = (date: DateValue): boolean => date === todayDate.value;
+const isToday = (date: DateValue): boolean => date.compare(todayDate.value) === 0;
 </script>
