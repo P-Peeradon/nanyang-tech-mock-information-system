@@ -27,49 +27,6 @@
                     ]"
                 />
                 <MenuCard :category="'Student Service'" />
-                <!--
-                <UCard class="bg-rose-800">
-                    <template #header>
-                        <h2>
-                            Personal Account
-                        </h2>
-                    </template>
-                    <ul>
-                        <li>
-                            <p>
-                                <NuxtLink>Profile Management</NuxtLink>
-                            </p>
-                        </li>
-                        <li>
-                            <p>
-                                <NuxtLink>Add/Drop Course</NuxtLink>
-                            </p>
-                        </li>
-                    </ul>
-                </UCard>
-                <UCard class="bg-rose-800">
-                    <template #header>
-                        <h2>Financial Service</h2>
-                    </template>
-                </UCard>
-                <UCard class="bg-rose-800">
-                    <template #header>
-                        <h2>Timetable</h2>
-                    </template>
-                    <ul>
-                        <li>
-                            <p>
-                                <NuxtLink>Timetable Planner</NuxtLink>
-                            </p>
-                        </li>
-                    </ul>
-                </UCard>
-                <UCard class="bg-rose-800">
-                    <template #header>
-                        <h2>Student Service</h2>
-                    </template>
-                </UCard>
-                -->
             </div>
         </template>
     </UPage>
