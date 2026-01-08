@@ -1,5 +1,5 @@
 <template>
-    <UCard class="border-2 border-gold-700 bg-cardinal-200 shadow-xl shadow-slate-600">
+    <UCard class="w-450 aspect-3/2 border-2 border-gold-700 bg-cardinal-200 shadow-xl shadow-slate-600">
         <template #header>
             <h3 class="text-primary-500 text-2xl">
                 Student Name

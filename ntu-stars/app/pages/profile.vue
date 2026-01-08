@@ -1,7 +1,10 @@
 <template>
     <UPage>
         <TitleSection :title="'Student Profile'" />
-        <ProfileCard />
+        <UPageSection>
+            <ProfileCard />
+            <AcademicCalendar />
+        </UPageSection>
     </UPage>
 </template>
 
