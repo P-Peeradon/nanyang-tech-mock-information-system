@@ -4,7 +4,7 @@
             readonly
             month-controls
             !fixed-weeks
-            class="w-70 aspect-square"
+            class="w-70 h-70"
         >
             <template #day="{ day }">
                 <div
