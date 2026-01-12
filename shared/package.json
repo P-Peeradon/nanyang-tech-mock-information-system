@@ -2,6 +2,11 @@
   "name": "@ntu/shared",
   "version": "1.0.0",
   "main": "index.ts",
+  "type": "module",
+  "exports": {
+    ".": "./index.ts",
+    "./*": "./*.ts"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
