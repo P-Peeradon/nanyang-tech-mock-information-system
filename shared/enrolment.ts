@@ -1,7 +1,7 @@
 export class Enrolment implements IEnrolment {
     private _studentId!: string;
     private _courseCode!: string;
-    // _status: any;
+    private _status: Status;
     private _year: number;
     private _semester: number;
     private _remark?: string | undefined;
@@ -12,6 +12,7 @@ export class Enrolment implements IEnrolment {
         this._year = year ?? 1965;
         this._semester = semester ?? 1;
         this._remark = remark;
+        this._status = 'Pending';
     };
 
     public get studentId(): string {
@@ -21,6 +22,10 @@ export class Enrolment implements IEnrolment {
     public get courseCode(): string {
         return this._courseCode;
     };
+
+    public get status(): Status {
+        return this._status
+    }
 
     public get year(): number {
         return this._year;
@@ -49,9 +54,11 @@ export class Enrolment implements IEnrolment {
 export interface IEnrolment {
     readonly studentId: string;
     readonly courseCode: string;
-    // status: any;
+    readonly status: Status;
     readonly year: number;
     readonly semester: number;
     readonly remark?: string;
     toJSON(): object;
 }
+
+type Status = 'Approved' | 'Pending' | 'Reject';
