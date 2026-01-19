@@ -1,4 +1,4 @@
-import pool from '../../db/database';
+import pool from '../../db/mysql';
 import { RowDataPacket } from 'mysql2';
 
 function createStudent() {
