@@ -6,7 +6,7 @@ const pool: Pool = mysql.createPool({
       password: process.env.DB_PASSWORD || '',
       database: process.env.DB_NAME || 'ntu_db',
       waitForConnections: true,
-      connectionLimit: 10,
+      connectionLimit: 20,
 });
 
 export default pool;
