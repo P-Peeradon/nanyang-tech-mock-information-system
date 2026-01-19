@@ -4,6 +4,9 @@ export default defineNuxtConfig({
     devtools: { enabled: true },
     modules: ['@nuxt/ui', '@nuxt/eslint'],
     typescript: { strict: true, hoist: ['@ntu/shared'] },
+    runtimeConfig: {
+        jwtSecret: process.env.JWT_SECRET
+    },
     ssr: true,
     nitro: {
         scanDirs: ['server'],
