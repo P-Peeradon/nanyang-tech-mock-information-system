@@ -1,12 +1,21 @@
 import mongoose, { type Document } from "mongoose";
 import bcrypt from "bcryptjs";
 
+const baseOptions = {
+    discriminatorKey: 'userType', // This is the crucial field Mongoose will use
+    timestamps: true,
+};
+
 const UserSchema = new mongoose.Schema({
-    nanyangId: { type: String, required: true }, // Using Student/Staff ID (e.g., U1234567A)
     fullName: {
         type: String,
         required: true,
         trim: true,
+    },
+    userType: {
+        type: ['student', 'staff', 'admin', 'intern'],
+        required: true,
+        trim: true
     },
     email: {
         type: String,
@@ -24,7 +33,7 @@ const UserSchema = new mongoose.Schema({
         enum: ['student', 'teaching_staff', 'school_admin', 'registrar_admin'],
         required: true,
     }
-});
+}, baseOptions);
 
 UserSchema.pre('save', async function() {
     // Only hash the password if it has been modified (or is new)
@@ -55,6 +64,7 @@ UserSchema.methods.comparePassword = async function(candidatePassword: string) {
 const User = mongoose.model<UserDocument>('user', UserSchema);
 
 export interface UserDocument extends Document {
+    userType: 'student' | 'staff' | 'admin' | 'intern',
     password: string,
     nanyangId: string,
     fullName: string,
