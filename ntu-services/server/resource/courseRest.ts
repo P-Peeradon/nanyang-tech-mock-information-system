@@ -26,7 +26,7 @@ async function retrieveCourse({ option, code }: { option?: string[], code?: stri
 
         } else {
 
-            const [rows] = await pool.execute<coursePacket[]>(query, [fields])
+            const [rows, _field] = await pool.execute<coursePacket[]>(query, [fields])
             return rows;
 
         }
@@ -35,7 +35,7 @@ async function retrieveCourse({ option, code }: { option?: string[], code?: stri
 
         console.error(err)
         throw err;
-        
+
     }
 };
 
