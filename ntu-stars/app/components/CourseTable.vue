@@ -9,7 +9,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 import type { TableColumn } from '@nuxt/ui';
-import { coursePacket } from '../../../ntu-services/server/resource/courseRest';
+import type { coursePacket } from '../../../ntu-services/server/resource/courseRest';
 import { Course, type ICourse } from '../../../shared/course';
 
 const allCourse = ref<ICourse[]>([]);
