@@ -4,18 +4,22 @@ export default defineNuxtConfig({
         '../ntu-services'
     ],
 
-    modules: ['@pinia/nuxt'],
-
+    modules: [
+        '@nuxt/ui',
+        '@pinia/nuxt'
+    ],
     devtools: {
         enabled: true
     },
 
     css: ['~/assets/css/main.css'],
-
     routeRules: {
         '/': { prerender: true }
     },
 
+    devServer: {
+        port: 4520
+    },
     compatibilityDate: '2025-01-15',
 
     eslint: {
