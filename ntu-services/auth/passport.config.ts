@@ -2,8 +2,13 @@ import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local';
 import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt';
 import bcrypt from 'bcryptjs';
-
 import User from '~/models/user';
+
+export type JWTToken = {
+    userId: string,
+    fullName: string,
+    role: ['student', 'teaching_staff', 'school_admin', 'registrar_admin']
+}
 
 passport.use(new LocalStrategy({
     usernameField: 'username', // We'll use email as the "username"
