@@ -41,6 +41,7 @@ export default defineAppConfig({
                 ]
             },
             color: {
+                primary: 'bg-primary border-indigo-600 hover:bg-primary-800 hover:border-imperial-500',
                 error: 'bg-error border-cardinal-700 hover:bg-rose-800 hover:border-cardinal-500'
             },
             size: {
