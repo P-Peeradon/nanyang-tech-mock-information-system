@@ -17,6 +17,12 @@ const UserSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
+    phone: {
+        type: String,
+        required: true,
+        unique: true,
+        regex: '^+65 [/d]{2} [/d]{3} [/d]{4}$'
+    },
     email: {
         type: String,
         required: true,
@@ -66,7 +72,6 @@ const User = mongoose.model<UserDocument>('user', UserSchema);
 export interface UserDocument extends Document {
     userType: 'student' | 'staff' | 'admin' | 'intern',
     password: string,
-    nanyangId: string,
     fullName: string,
     email: string,
     role: "student" | "teaching_staff" | "school_admin" | "registrar_admin",

@@ -1,19 +1,27 @@
 import pool from '../../db/mysql';
 import type { RowDataPacket } from 'mysql2';
 
+export interface coursePacket extends RowDataPacket {
+    cos_code: string,
+    cos_title: string,
+    cos_au: number
+}
+
 async function createCourse() {
     
 };
 
-async function retrieveCourse(code?: string) {
-    let query: string = 'SELECT * FROM course';
+async function retrieveCourse(option?: string[], code?: string): Promise<coursePacket | coursePacket[]> {
+    const fields: string = option?.join(',') ?? '*';
+
+    let query: string = 'SELECT ? FROM course';
 
     if (code) {
         query += ' WHERE cos_code = ?';
-        const [rows, _field] = await pool.execute<RowDataPacket[]>(query, [code]);
+        const [rows, _field] = await pool.execute<coursePacket[]>(query, [fields, code]);
         return rows[0];
     } else {
-        const [rows] = await pool.execute<RowDataPacket[]>(query)
+        const [rows] = await pool.execute<coursePacket[]>(query, [fields])
         return rows;
     }  
 };
