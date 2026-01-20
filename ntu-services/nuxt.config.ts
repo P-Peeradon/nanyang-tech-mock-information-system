@@ -5,12 +5,12 @@ export default defineNuxtConfig({
     modules: ['@nuxt/ui', '@nuxt/eslint'],
     typescript: { strict: true, hoist: ['@ntu/shared'] },
     runtimeConfig: {
-        jwtSecret: process.env.JWT_SECRET,
-        mysqlHost: process.env.MYSQL_HOST,
-        mysqlUser: process.env.MYSQL_USER,
-        mysqlPassword: process.env.MYSQL_PASSWORD,
-        mysqlDBName: process.env.MYSQL_NAME,
-        mongodbURI: process.env.MONGODB_URI
+        jwtSecret: process.env.NUXT_JWT_SECRET,
+        mysqlHost: process.env.NUXT_MYSQL_HOST,
+        mysqlUser: process.env.NUXT_MYSQL_USER,
+        mysqlPassword: process.env.NUXT_MYSQL_PASSWORD,
+        mysqlDBName: process.env.NUXT_MYSQL_NAME,
+        mongodbURI: process.env.NUXT_MONGODB_URI
     },
     ssr: true,
     nitro: {

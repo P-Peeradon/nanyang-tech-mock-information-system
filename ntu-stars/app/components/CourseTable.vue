@@ -12,7 +12,7 @@ import type { TableColumn } from '@nuxt/ui';
 import type { coursePacket } from '../../../ntu-services/server/resource/courseRest';
 import { Course, type ICourse } from '../../../shared/course';
 
-const allCourse = ref<ICourse[]>([]);
+const allCourse = ref<Course[]>([]);
 
 const columns: TableColumn<ICourse>[] = [
     {
@@ -33,7 +33,7 @@ const columns: TableColumn<ICourse>[] = [
 ];
 
 onMounted(async () => {
-    const data: coursePacket = await $fetch('/api/ntu-registrar/course', {
+    const data: coursePacket[] = await $fetch('/api/ntu-registrar/course', {
         method: 'get',
         query: {
             fields: 'cos_code,cos_title,cos_au'
