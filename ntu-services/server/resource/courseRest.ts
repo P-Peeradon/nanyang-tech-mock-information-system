@@ -7,7 +7,7 @@ export interface coursePacket extends RowDataPacket {
     cos_au: number
 };
 
-const ALLOWED_COURSE_FIELDS = ['cos_code', 'cos_name', 'cos_au', 'cos_description'];
+const ALLOWED_COURSE_FIELDS = ['cos_code', 'cos_title', 'cos_au'];
 
 async function createCourse() {
     
