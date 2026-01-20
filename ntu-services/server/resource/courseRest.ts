@@ -11,7 +11,7 @@ async function createCourse() {
     
 };
 
-async function retrieveCourse(option?: string[], code?: string): Promise<coursePacket | coursePacket[]> {
+async function retrieveCourse({ option, code }: { option?: string[], code?: string } = {}): Promise<coursePacket | coursePacket[]> {
     const fields: string = option?.join(',') ?? '*';
 
     let query: string = 'SELECT ? FROM course';

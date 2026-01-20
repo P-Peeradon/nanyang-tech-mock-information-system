@@ -4,5 +4,5 @@ export default defineEventHandler(async (e) => {
     const query = getQuery<{ fields?: string }>(e);
     const fields: string[] | undefined = query?.fields?.split(',');
 
-    return courseRest.retrieveCourse(fields);
+    return courseRest.retrieveCourse({option: fields});
 });
