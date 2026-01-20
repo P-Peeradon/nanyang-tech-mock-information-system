@@ -12,18 +12,31 @@ async function createCourse() {
 };
 
 async function retrieveCourse({ option, code }: { option?: string[], code?: string } = {}): Promise<coursePacket | coursePacket[]> {
-    const fields: string = option?.join(',') ?? '*';
+    try {
 
-    let query: string = 'SELECT ? FROM course';
+        const fields: string = option?.join(',') ?? '*';
 
-    if (code) {
-        query += ' WHERE cos_code = ?';
-        const [rows, _field] = await pool.execute<coursePacket[]>(query, [fields, code]);
-        return rows[0];
-    } else {
-        const [rows] = await pool.execute<coursePacket[]>(query, [fields])
-        return rows;
-    }  
+        let query: string = 'SELECT ? FROM course';
+
+        if (code) {
+
+            query += ' WHERE cos_code = ?';
+            const [rows, _field] = await pool.execute<coursePacket[]>(query, [fields, code]);
+            return rows[0];
+
+        } else {
+
+            const [rows] = await pool.execute<coursePacket[]>(query, [fields])
+            return rows;
+
+        }
+
+    } catch(err) {
+
+        console.error(err)
+        throw err;
+        
+    }
 };
 
 function updateCourse() {
