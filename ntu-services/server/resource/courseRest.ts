@@ -5,7 +5,9 @@ export interface coursePacket extends RowDataPacket {
     cos_code: string,
     cos_title: string,
     cos_au: number
-}
+};
+
+const ALLOWED_COURSE_FIELDS = ['cos_code', 'cos_name', 'cos_au', 'cos_description'];
 
 async function createCourse() {
     
@@ -13,20 +15,33 @@ async function createCourse() {
 
 async function retrieveCourse({ option, code }: { option?: string[], code?: string } = {}): Promise<coursePacket | coursePacket[]> {
     try {
+        let fieldsToSelect = '*';
 
-        const fields: string = option?.join(',') ?? '*';
+        if (option && option.length > 0) {
+            // Filter the user-provided fields against our whitelist
+            const validFields = option.filter(field => ALLOWED_COURSE_FIELDS.includes(field));
 
-        let query: string = 'SELECT ? FROM course';
+            // If any valid fields remain after filtering, use them.
+            // Otherwise, stick with the default '*'.
+            if (validFields.length > 0) {
+                // Join the *validated* fields into a comma-separated string
+                fieldsToSelect = validFields.join(', ');
+            }
+        }
+
+        let query: string = `SELECT ${fieldsToSelect} FROM course`;
+        const params: (string | number)[] = [];
 
         if (code) {
 
             query += ' WHERE cos_code = ?';
-            const [rows, _field] = await pool.execute<coursePacket[]>(query, [fields, code]);
+            params.push(code);
+            const [rows, _field] = await pool.execute<coursePacket[]>(query, [code]);
             return rows[0];
 
         } else {
 
-            const [rows, _field] = await pool.execute<coursePacket[]>(query, [fields])
+            const [rows, _field] = await pool.execute<coursePacket[]>(query)
             return rows;
 
         }
