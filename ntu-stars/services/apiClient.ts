@@ -10,8 +10,8 @@ const registrarClient = axios.create({
 });
 
 registrarClient.interceptors.request.use((config) => {
-    const authState = authStore()
-    const token = authState.token;
+    const authState = authStore();
+    const token: string | null = authState.getToken();
     if (token) {
         config.headers.Authorization = `Bearer ${token}`;
     }
