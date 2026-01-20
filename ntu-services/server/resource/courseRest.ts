@@ -1,7 +1,7 @@
 import pool from '../../db/mysql';
-import { RowDataPacket } from 'mysql2';
+import type { RowDataPacket } from 'mysql2';
 
-function createCourse() {
+async function createCourse() {
     
 };
 
@@ -13,7 +13,7 @@ async function retrieveCourse(code?: string) {
         const [rows, _field] = await pool.execute<RowDataPacket[]>(query, [code]);
         return rows[0];
     } else {
-        const [rows] = await pool.execute(query)
+        const [rows] = await pool.execute<RowDataPacket[]>(query)
         return rows;
     }  
 };

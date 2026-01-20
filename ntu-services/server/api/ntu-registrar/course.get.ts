@@ -1,4 +1,4 @@
-import courseRest from "~/server/resource/courseRest";
+import courseRest from '../../resource/courseRest';
 
 export default defineEventHandler(async (e) => {
     return courseRest.retrieveCourse();

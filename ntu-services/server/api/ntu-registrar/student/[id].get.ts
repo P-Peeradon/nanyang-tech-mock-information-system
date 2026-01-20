@@ -1,4 +1,4 @@
-import studentRest from "~/server/resource/studentRest";
+import studentRest from '../../../resource/studentRest';
 
 export default defineEventHandler(async (e) => {
     const id: string | undefined = getRouterParam(e, 'id');
