@@ -1,10 +1,12 @@
 import mysql, { type Pool } from 'mysql2/promise';
 
+const config = useRuntimeConfig();
+
 const pool: Pool = mysql.createPool({
-      host: process.env.MYSQL_HOST || 'localhost',
-      user: process.env.MYSQL_USER || 'root',
-      password: process.env.MYSQL_PASSWORD || '',
-      database: process.env.MYSQL_NAME || 'ntu_db',
+      host: config.mysqlHost || 'localhost',
+      user: config.mysqlUser || 'nanyang60',
+      password: config.mysqlPassword || '',
+      database: config.mysqlDBName || 'ntu_db',
       waitForConnections: true,
       connectionLimit: 20,
 });

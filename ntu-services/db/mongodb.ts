@@ -1,14 +1,14 @@
 import mongoose from "mongoose";
 
-const NTU_REGISTRAR_URI: string = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/ntu_stars_db';
+const config = useRuntimeConfig();
 
-const connectDB = async () => {
+const connectMongo = async () => {
     try {
-        await mongoose.connect(NTU_REGISTRAR_URI);
+        await mongoose.connect(config.mongodbURI);
     } catch (err) {
         console.error('MongoDB connection error:', err);
         throw err;
     }
 }
 
-export default connectDB;
+export default connectMongo;
