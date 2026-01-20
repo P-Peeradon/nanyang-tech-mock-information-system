@@ -17,17 +17,17 @@
                 </div>
                 <div class="flex flex-col justify-evenly items-start space-y-auto">
                     <p
-                        class="text-xs md:text-sm lg:text-base xl:text-xl font-semibold"
+                        class="text-xs md:text-sm lg:text-base xl:text-xl font-semibold text-black"
                     >
                         <span class="text-gold-600 italic">ID:</span> Student ID
                     </p>
                     <p
-                        class="text-xs md:text-sm lg:text-base xl:text-xl font-semibold"
+                        class="text-xs md:text-sm lg:text-base xl:text-xl font-semibold text-black"
                     >
                         <span class="text-gold-600 italic">Program:</span> Student Program
                     </p>
                     <p
-                        class="text-xs md:text-sm lg:text-base xl:text-xl font-semibold"
+                        class="text-xs md:text-sm lg:text-base xl:text-xl font-semibold text-black"
                     >
                         <span class="text-gold-600 italic">School:</span> Student School
                     </p>
@@ -36,7 +36,9 @@
         </template>
 
         <template #footer>
-            <h3 class="text-imperial-400 font-semibold text-sm lg:text-lg">Nanyang Technological University</h3>
+            <h3 class="text-imperial-500 font-semibold text-sm lg:text-lg">
+                Nanyang Technological University
+            </h3>
         </template>
     </UCard>
 </template>

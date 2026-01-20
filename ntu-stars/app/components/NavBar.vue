@@ -1,10 +1,10 @@
 <template>
-    <nav>
-        <ul>
-            <li>
-                <NuxtLink to="/welcome">Welcome Page</NuxtLink>
+    <nav class="w-screen bg-imperial-500 m-0">
+        <ul class="flex flex-row justify-evenly py-4">
+            <li class="text-cardinal-300 text-2xl font-semibold">
+                <NuxtLink to="/welcome">Welcome</NuxtLink>
             </li>
-            <li>
+            <li class="text-cardinal-300 text-2xl font-semibold">
                 <NuxtLink to="/profile">Profile</NuxtLink>
             </li>
         </ul>
