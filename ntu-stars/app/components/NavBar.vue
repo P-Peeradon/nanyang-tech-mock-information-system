@@ -7,6 +7,9 @@
             <li class="text-cardinal-300 text-2xl font-semibold">
                 <NuxtLink to="/profile">Profile</NuxtLink>
             </li>
+            <li class="text-cardinal-300 text-2xl font-semibold">
+                <NuxtLink to="/addDrop">Add/Drop Course</NuxtLink>
+            </li>
         </ul>
     </nav>
 </template>
