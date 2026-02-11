@@ -16,9 +16,6 @@ export default defineAppConfig({
             search: 'i-lucide-search',
             menu: 'i-lucide-menu'
         },
-        pageBody: {
-            base: 'flex flex-row h-auto m-10 mb-20'
-        },
         pageFeature: {
             slots: {
                 root: 'flex flex-col lg:w-[760px] xl:w-[1020px]',

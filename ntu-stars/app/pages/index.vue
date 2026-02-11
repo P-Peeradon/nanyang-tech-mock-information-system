@@ -1,6 +1,6 @@
 <template>
     <UPage>
-        <UPageBody class="gap-x-10">
+        <UPageBody class="flex flex-row h-auto m-10 mb-20 gap-x-10">
             <UPageFeature
                 title="NTU Lyon"
                 orientation="vertical"
