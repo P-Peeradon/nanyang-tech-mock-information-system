@@ -3,11 +3,11 @@
   base = "."
   
   # Reach into the client folder to build
-  command = "cd client && npm run build"
+  command = "cd ntu-stars && npm run build"
   
   # Nuxt 3 outputs the static files here
-  publish = "client/dist"
+  publish = "ntu-stars/output"
 
 [functions]
   # If you want your 'server-api' to be deployed as Netlify Functions
-  directory = "server-api"
+  directory = "ntu-services"
