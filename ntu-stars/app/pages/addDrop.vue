@@ -3,7 +3,7 @@
         <NavBar />
         <TitleSection :title="'Add/Drop Course'" />
         <UPageBody>
-            <UPageSection class="py-0">
+            <UPageSection>
                 <template #header>
                     <h2 class="text-cardinal-600 font-semibold text-2xl">
                         Enrol in Course
