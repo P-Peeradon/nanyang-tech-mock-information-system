@@ -29,7 +29,7 @@ useSeoMeta({
     <UApp>
         <WebBanner />
 
-        <UMain class="bg-gradient-to-tr from-purple-200 to-sky-300">
+        <UMain class="bg-linear-to-tr from-purple-200 to-sky-300">
             <NuxtLayout>
                 <NuxtPage />
             </NuxtLayout>

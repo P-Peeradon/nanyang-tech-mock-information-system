@@ -11,7 +11,8 @@ export default defineNuxtConfig({
     devtools: {
         enabled: true
     },
-
+    serverDir: 'ntu-services/',
+    srcDir: 'ntu-stars/',
     css: ['~/assets/css/main.css'],
     routeRules: {
         '/': { prerender: true }
