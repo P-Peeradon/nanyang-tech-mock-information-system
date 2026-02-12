@@ -1,0 +1,13 @@
+[build]
+  # Leave base empty or "." so Netlify sees the whole repo
+  base = "."
+  
+  # Reach into the client folder to build
+  command = "cd client && npm run build"
+  
+  # Nuxt 3 outputs the static files here
+  publish = "client/dist"
+
+[functions]
+  # If you want your 'server-api' to be deployed as Netlify Functions
+  directory = "server-api"
