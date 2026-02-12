@@ -5,21 +5,21 @@
     >
         <template #code-cell="{ row }">
             <div class="flex items-center px-6 gap-4">
-                <p class="text-black font-medium text-lg">
+                <p class="text-black font-thin text-base">
                     {{ row.original.code }}
                 </p>
             </div>
         </template>
         <template #title-cell="{ row }">
             <div class="flex items-center px-6 gap-4">
-                <p class="text-black font-medium text-lg">
+                <p class="text-black font-thin text-base">
                     {{ row.original.title }}
                 </p>
             </div>
         </template>
         <template #au-cell="{ row }">
             <div class="flex items-center px-6 gap-4">
-                <p class="text-black font-medium text-lg">
+                <p class="text-black font-thin text-base">
                     {{ row.original.au }}
                 </p>
             </div>
@@ -53,7 +53,7 @@ const columns: TableColumn<ICourse>[] = [
         header: 'Course Code',
         meta: {
             class: {
-                th: 'text-center text-xl text-gold-700 font-semibold'
+                th: 'text-center text-xl text-gold-700 font-semibold underline'
             }
         }
     },
@@ -62,7 +62,7 @@ const columns: TableColumn<ICourse>[] = [
         header: 'Course Title',
         meta: {
             class: {
-                th: 'text-center text-xl text-gold-700 font-semibold'
+                th: 'text-center text-xl text-gold-700 font-semibold underline'
             }
         }
     },
@@ -71,7 +71,7 @@ const columns: TableColumn<ICourse>[] = [
         header: 'Academic Unit',
         meta: {
             class: {
-                th: 'text-center text-xl text-gold-700 font-semibold'
+                th: 'text-center text-xl text-gold-700 font-semibold underline'
             }
         }
     },
