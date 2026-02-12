@@ -3,7 +3,7 @@
   base = "."
   
   # Reach into the client folder to build
-  command = "cd ntu-stars && npm run build"
+  command = "cd ntu-stars && bun run build"
   
   # Nuxt 3 outputs the static files here
   publish = "ntu-stars/output"
