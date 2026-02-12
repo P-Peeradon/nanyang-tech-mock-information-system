@@ -18,9 +18,10 @@ export default defineAppConfig({
         },
         pageSection: {
             slots: {
-                root: 'relative isolate',
-                container: 'flex flex-col py-0 gap-8 sm:gap-16',
-                description: 'flex flex-row justify-between py-0 lg:px-20 xl:px-40'
+                root: 'relative isolate w-full',
+                container: 'flex lg:flex flex-row justify-center items-center gap-6 py-0 sm:py-0 lg:py-0 lg:px-20 xl:px-40',
+                title: 'flex flex-row text-secondary-600 ps-20',
+                body: 'flex lg:flex'
             }
         },
         pageFeature: {
@@ -35,6 +36,12 @@ export default defineAppConfig({
             slots: {
                 root: 'flex flex-col w-auto rounded-none',
                 title: 'text-3xl text-primary'
+            }
+        },
+        table: {
+            slots: {
+                root: 'relative overflow-auto',
+                td: 'text-sm'
             }
         },
         button: {

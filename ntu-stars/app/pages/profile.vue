@@ -2,15 +2,15 @@
     <UPage>
         <NavBar />
         <TitleSection :title="'Student Profile'" />
-        <UPageSection>
-            <template #description>
-                <div class="flex flex-row justify-between py-0 lg:px-20 xl:px-40">
+        <UPageBody>
+            <UPageSection>
+                <template #default>
                     <ProfileCard />
-                    <AcademicCalendar />
-                </div>
-            </template>
-        </UPageSection>
-        <UPageSection />
+                    <AcademicCalendar :events="[]" />
+                </template>
+            </UPageSection>
+            <UPageSection />
+        </UPageBody>
         <div class="mb-20">
             <br>
         </div>

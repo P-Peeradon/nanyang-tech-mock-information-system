@@ -1,32 +1,54 @@
 <template>
-    <ClientOnly>
-        <UCalendar
-            readonly
-            month-controls
-            !fixed-weeks
-            class="w-70 h-70 text-black"
-        >
-            <template #day="{ day }">
-                <div
-                    class="w-full h-full flex items-center justify-center rounded-full"
-                    :class="isToday(day) ? 'border-2 border-imperial-600' : ''"
-                >
-                    <span :class="(isWeekend(day) ? 'text-red-600' : 'text-black')">
-                        {{ day.day }}
-                    </span>
-                </div>
-            </template>
-        </UCalendar>
-    </ClientOnly>
+    <ScheduleXCalendar :calendar-app="calendarApp" />
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
-import { today, getDayOfWeek, type DateValue, type CalendarDate } from '@internationalized/date';
+import { ScheduleXCalendar } from '@schedule-x/vue';
+import {
+    createCalendar,
+    createViewWeek,
+    type CalendarEventExternal,
+    type CalendarConfig,
+    createViewMonthAgenda
+} from '@schedule-x/calendar';
+import { createCalendarControlsPlugin } from '@schedule-x/calendar-controls';
+import '@schedule-x/theme-default/dist/index.css';
+import 'temporal-polyfill/global';
 
-const todayDate = ref<DateValue>(today('Asia/Singapore'));
+interface calendarProps {
+    events: CalendarEventExternal[];
+}
+const props = defineProps<calendarProps>();
 
-const isWeekend = (date: DateValue): boolean => getDayOfWeek(date, 'en-US') % 6 === 0;
+const controls = createCalendarControlsPlugin();
 
-const isToday = (date: DateValue): boolean => date.compare(todayDate.value as CalendarDate) === 0;
+const config: CalendarConfig = {
+    locale: 'en-GB',
+    timezone: 'Asia/Singapore',
+    selectedDate: Temporal.PlainDate.from('2026-02-01'),
+    firstDayOfWeek: 1,
+    views: [
+        createViewWeek(),
+        createViewMonthAgenda()
+    ],
+    weekOptions: {
+        gridHeight: 200,
+        nDays: 5,
+        eventWidth: 85,
+
+        timeAxisFormatOptions: { hour: '2-digit', minute: '2-digit' },
+
+        eventOverlap: true,
+        gridStep: 60
+    },
+    dayBoundaries: {
+        start: '08:00',
+        end: '20:00'
+    },
+    minDate: Temporal.PlainDate.from('2020-01-01'),
+    maxDate: Temporal.PlainDate.from('2030-12-31'),
+    events: props.events
+};
+
+const calendarApp = createCalendar(config, [controls]);
 </script>
