@@ -16,6 +16,13 @@ export default defineAppConfig({
             search: 'i-lucide-search',
             menu: 'i-lucide-menu'
         },
+        pageSection: {
+            slots: {
+                root: 'relative isolate',
+                container: 'flex flex-col py-0 gap-8 sm:gap-16',
+                description: 'flex flex-row justify-between py-0 lg:px-20 xl:px-40'
+            }
+        },
         pageFeature: {
             slots: {
                 root: 'flex flex-col lg:w-[760px] xl:w-[1020px]',
