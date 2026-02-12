@@ -1,14 +1,16 @@
 <template>
-    <ScheduleXCalendar :calendar-app="calendarApp" />
+    <ClientOnly>
+        <ScheduleXCalendar :calendar-app="calendarApp" />
+    </ClientOnly>
 </template>
 
 <script lang="ts" setup>
 import { ScheduleXCalendar } from '@schedule-x/vue';
 import {
     createCalendar,
-    createViewWeek,
     type CalendarEventExternal,
     type CalendarConfig,
+    createViewWeek,
     createViewMonthAgenda
 } from '@schedule-x/calendar';
 import { createCalendarControlsPlugin } from '@schedule-x/calendar-controls';
@@ -28,8 +30,8 @@ const config: CalendarConfig = {
     selectedDate: Temporal.PlainDate.from('2026-02-01'),
     firstDayOfWeek: 1,
     views: [
-        createViewWeek(),
-        createViewMonthAgenda()
+        createViewMonthAgenda(),
+        createViewWeek()
     ],
     weekOptions: {
         gridHeight: 200,
