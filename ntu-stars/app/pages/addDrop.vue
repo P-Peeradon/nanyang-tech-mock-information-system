@@ -4,8 +4,8 @@
         <TitleSection :title="'Add/Drop Course'" />
         <UPageBody>
             <UPageSection>
-                <template #header>
-                    <h2 class="text-cardinal-600 font-semibold text-2xl">
+                <template #title>
+                    <h2 class="font-semibold text-2xl lg:text-3xl drop-shadow-lg drop-shadow-rose-400 drop-shadow-opacity-20">
                         Enrol in Course
                     </h2>
                 </template>
