@@ -3,7 +3,6 @@ export default defineNuxtConfig({
     extends: [
         '../ntu-services'
     ],
-
     modules: [
         '@nuxt/ui',
         '@pinia/nuxt'
@@ -11,9 +10,9 @@ export default defineNuxtConfig({
     devtools: {
         enabled: true
     },
-    serverDir: 'ntu-services/',
-    srcDir: 'ntu-stars/',
     css: ['~/assets/css/main.css'],
+    srcDir: 'ntu-stars/',
+    serverDir: 'ntu-services/',
     routeRules: {
         '/': { prerender: true }
     },

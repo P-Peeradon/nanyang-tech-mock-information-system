@@ -3,7 +3,7 @@
   base = "."
   
   # Reach into the client folder to build
-  command = "cd ntu-stars && bun run build"
+  command = "curl -fsSL https://bun.sh/install | bash && source /opt/buildhome/.bashrc && bun install && cd ntu-stars && bun run build"
   
   # Nuxt 3 outputs the static files here
   publish = "ntu-stars/output"
@@ -11,3 +11,5 @@
 [functions]
   # If you want your 'server-api' to be deployed as Netlify Functions
   directory = "ntu-services"
+  # Tell Bun not to use a cache if you run into permission issues (optional)
+  BUN_INSTALL = "/opt/buildhome/.bun"
