@@ -36,7 +36,7 @@
         </template>
 
         <template #footer>
-            <h3 class="text-imperial-500 font-semibold text-sm lg:text-lg">
+            <h3 class="text-imperial-500 font-semibold hidden lg:block lg:text-lg">
                 Nanyang Technological University
             </h3>
         </template>
