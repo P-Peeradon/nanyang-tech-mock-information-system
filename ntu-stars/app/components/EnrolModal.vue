@@ -1,8 +1,8 @@
 <template>
-    <UModal>
+    <UModal v-model="modelValue">
         <UCard>
             <template #header>
-                <h3>Enrol in {{ courseTitle }}</h3>
+                <h3>Enrol in {{ courseCode }}</h3>
             </template>
             <p>Are you sure you want to enrol in ({{ courseCode }}): {{ courseTitle }}?</p>
             <template #footer>
@@ -40,6 +40,8 @@ const props = defineProps({
         required: true
     } 
 });
+
+const modelValue = defineModel<boolean>();
 
 const emits = defineEmits(['cancel', 'confirm']);
 </script>
