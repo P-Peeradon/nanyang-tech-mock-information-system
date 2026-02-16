@@ -11,8 +11,8 @@ export default defineNuxtConfig({
         enabled: true
     },
     css: ['~/assets/css/main.css'],
-    srcDir: 'ntu-stars/',
-    serverDir: 'ntu-services/',
+    srcDir: 'app/',
+    // serverDir: 'ntu-services/',
     routeRules: {
         '/': { prerender: true }
     },
@@ -21,7 +21,6 @@ export default defineNuxtConfig({
         port: 4520
     },
     compatibilityDate: '2025-01-15',
-
     eslint: {
         config: {
             stylistic: {
