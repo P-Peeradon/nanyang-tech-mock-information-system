@@ -29,11 +29,12 @@ onMounted(() => {
         timezone: 'Asia/Singapore',
         selectedDate: Temporal.PlainDate.from('2026-02-01'),
         firstDayOfWeek: 1,
+        isResponsive: false,
         views: [
-            createViewMonthAgenda(),
+            createViewMonthGrid(),
             createViewWeek(),
             createViewDay(),
-            createViewMonthGrid()
+            createViewMonthAgenda()
         ],
         weekOptions: {
             gridHeight: 200,
@@ -60,6 +61,6 @@ onMounted(() => {
 
 <template>
     <ClientOnly>
-        <ScheduleXCalendar :calendar-app="calendarApp" />
+        <ScheduleXCalendar v-if="calendarApp" :calendar-app="calendarApp" />
     </ClientOnly>
 </template>
