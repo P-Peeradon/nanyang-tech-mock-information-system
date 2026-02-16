@@ -1,6 +1,6 @@
 <template>
     <UTable
-        :data="allCourse"
+        :data="allCourse || []"
         :columns="columns"
     >
         <template #code-cell="{ row }">
@@ -37,14 +37,25 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import type { TableColumn } from '@nuxt/ui';
 import type { coursePacket } from '../../../ntu-services/server/resource/courseRest';
 import { Course, type ICourse } from '../../../shared/course';
 
 const allCourse = ref<Course[]>([]);
-const handleEnrol = (courseCode: string) => {
-
+const loading = ref<boolean>(false);
+const handleEnrol = async (courseCode: string) => {
+    loading.value = true;
+    try {
+        await useFetch('/api/ntu-registrar/enrolment', {
+            method: 'POST',
+            body: { courseCode }
+        });
+    } catch (error) {
+        console.error('Error fetching courses: ', error);
+    } finally {
+        loading.value = false;
+    }
 };
 
 const columns: TableColumn<ICourse>[] = [
@@ -81,17 +92,25 @@ const columns: TableColumn<ICourse>[] = [
 ];
 
 onMounted(async () => {
-    const data: coursePacket[] = await $fetch('/api/ntu-registrar/course', {
-        method: 'get',
-        query: {
-            fields: 'cos_code,cos_title,cos_au'
-        }
-    });
+    try {
 
-    allCourse.value = data.map((course: coursePacket) => {
-        const { cos_code, cos_title, cos_au } = course;
+        const { data: courses, status, error } = await useFetch<coursePacket[]>('/api/ntu-registrar/course', {
+            method: 'get',
+            query: {
+                fields: 'cos_code,cos_title,cos_au'
+            }
+        });
 
-        return new Course(cos_code, cos_title, cos_au);
-    });
+        allCourse.value = courses.value?.map((course: coursePacket) => {
+            const { cos_code, cos_title, cos_au } = course;
+
+            return new Course(cos_code, cos_title, cos_au);
+        }) || [];
+
+    } catch (error) {
+        console.error('Error fetching courses: ', error);
+    }
+    
+    
 });
 </script>
