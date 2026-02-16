@@ -1,7 +1,7 @@
 <template>
-    <UCard class="w-90 lg:w-120 xl:150 aspect-3/2 border-2 border-gold-700 bg-cardinal-200 shadow-xl shadow-slate-600">
+    <UCard class="w-120 lg:w-150 xl:w-180 aspect-3/2 border-2 border-gold-700 bg-cardinal-200 shadow-xl shadow-slate-600">
         <template #header>
-            <h3 class="text-primary-500 text-xl font-semibold my-0">
+            <h3 class="text-primary-500 text-base font-semibold my-0">
                 Student Name
             </h3>
         </template>
@@ -17,17 +17,17 @@
                 </div>
                 <div class="flex flex-col justify-evenly items-start space-y-auto">
                     <p
-                        class="text-xs md:text-sm lg:text-base xl:text-xl font-semibold text-black"
+                        class="text-xs lg:text-base font-semibold text-black"
                     >
                         <span class="text-gold-600 italic">ID:</span> Student ID
                     </p>
                     <p
-                        class="text-xs md:text-sm lg:text-base xl:text-xl font-semibold text-black"
+                        class="text-xs lg:text-base font-semibold text-black"
                     >
                         <span class="text-gold-600 italic">Program:</span> Student Program
                     </p>
                     <p
-                        class="text-xs md:text-sm lg:text-base xl:text-xl font-semibold text-black"
+                        class="text-xs lg:text-base font-semibold text-black"
                     >
                         <span class="text-gold-600 italic">School:</span> Student School
                     </p>
@@ -36,7 +36,7 @@
         </template>
 
         <template #footer>
-            <h3 class="text-imperial-500 font-semibold hidden lg:block lg:text-lg">
+            <h3 class="text-imperial-500 font-semibold hidden lg:block lg:text-base">
                 Nanyang Technological University
             </h3>
         </template>
