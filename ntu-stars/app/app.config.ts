@@ -53,6 +53,7 @@ export default defineAppConfig({
             },
             color: {
                 primary: 'bg-primary border-indigo-600 hover:bg-primary-800 hover:border-imperial-500',
+                secondary: 'bg-secondary border-secondary-600 hover:bg-secondary-800 hover:border-secondary-500',
                 error: 'bg-error border-cardinal-700 hover:bg-rose-800 hover:border-cardinal-500'
             },
             size: {
@@ -72,6 +73,7 @@ export default defineAppConfig({
                 root: 'flex flex-row justify-center w-full h-80 bg-linear-to-tr from-black to-indigo-950',
                 center: 'flex gap-50 lg:gap-70 xl:gap-100'
             }
-        }
+        },
+
     }
 });
