@@ -1,7 +1,8 @@
 <template>
-    <UPage>
-        <NavBar />
-        <TitleSection :title="'Student Profile'" />
+    <NuxtLayout name="default">
+        <template #header>
+            <TitleSection :title="'Student Profile'" />
+        </template>
         <UPageBody>
             <UPageSection>
                 <template #default>
@@ -11,11 +12,12 @@
             </UPageSection>
             <UPageSection />
         </UPageBody>
-        <div class="mb-20">
-            <br>
-        </div>
-    </UPage>
+    </NuxtLayout>
 </template>
 
 <script lang="ts" setup>
+definePageMeta({
+    layout: false
+})
 </script>
+

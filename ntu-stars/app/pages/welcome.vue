@@ -1,7 +1,8 @@
 <template>
-    <UPage>
-        <NavBar />
-        <TitleSection :title="'Welcome to NTU STARS'" />
+    <NuxtLayout name="default">
+        <template #header>
+            <TitleSection :title="'Welcome to NTU STARS'" />
+        </template>
         <div class="grid grid-cols-2 gap-8 px-8 lg:gap-16 xl:gap-32 m-0 lg:m-8 xl:m-16">
             <MenuCard
                 :category="'Personal Account'"
@@ -12,7 +13,7 @@
                     },
                     {
                         name: 'Add/Drop Course',
-                        page: '/welcome'
+                        page: '/addDrop'
                     }
                 ]"
             />
@@ -28,8 +29,12 @@
             />
             <MenuCard :category="'Student Service'" />
         </div>
-        <div class="mb-20">
-            <br>
-        </div>
-    </UPage>
+    </NuxtLayout>
 </template>
+
+<script setup lang="ts">
+definePageMeta({
+    layout: false
+})
+</script>
+
