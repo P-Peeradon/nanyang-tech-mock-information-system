@@ -1,0 +1,3 @@
+<template>
+    <UTable></UTable>
+</template>
