@@ -11,14 +11,14 @@ export type JWTToken = {
 }
 
 passport.use(new LocalStrategy({
-    usernameField: 'username', // We'll use email as the "username"
+    usernameField: 'username',
     passwordField: 'password'
 }, async (username, password, done) => {
     try {
         const user = await User.findOne({
             $or: [
-                { nanyangId: username.toUpperCase() }, // Assuming Student IDs are uppercase (e.g., U1234567A)
-                { email: new RegExp('^' + username + '$', 'i') } // Case-insensitive email search
+                { nanyangId: username.toUpperCase() },
+                { email: { $regex: new RegExp(`^${username.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`, 'i') } }
             ]
         });
 
@@ -34,8 +34,24 @@ passport.use(new LocalStrategy({
 
         return done(null, user)
     } catch (err) {
-      return done(err);
+        return done(err);
     }
-}));  
+}));
+
+passport.use(new JwtStrategy({
+    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+    secretOrKey: process.env.NUXT_JWT_SECRET || 'fallback-secret' // Prefer Nuxt runtime config var
+}, async (jwtPayload, done) => {
+    try {
+        const user = await User.findOne({ nanyangId: jwtPayload.nanyangId });
+        if (user) {
+            return done(null, user);
+        } else {
+            return done(null, false);
+        }
+    } catch (err) {
+        return done(err, false);
+    }
+}));
 
 export default passport;
