@@ -1,7 +1,7 @@
 import mongoose, { Schema, type Document } from 'mongoose';
 
 const courseSchema = new Schema({
-    courseCode: { type: String, required: true, unique: true },
+    code: { type: String, required: true, unique: true },
     title: { type: String, required: true },
     description: { type: String },
     au: { type: Number, required: true },

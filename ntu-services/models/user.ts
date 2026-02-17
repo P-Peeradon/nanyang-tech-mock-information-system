@@ -30,6 +30,13 @@ const UserSchema = new mongoose.Schema({
         lowercase: true,
         trim: true,
     },
+    nanyangId: {
+        type: String,
+        required: true,
+        unique: true,
+        trim: true,
+        uppercase: true,
+    },
     password: {
         type: String,
         required: true,
@@ -41,7 +48,7 @@ const UserSchema = new mongoose.Schema({
     }
 }, baseOptions);
 
-UserSchema.pre('save', async function() {
+UserSchema.pre('save', async function () {
     // Only hash the password if it has been modified (or is new)
     if (!this.isModified('password')) {
         return;
@@ -63,7 +70,7 @@ UserSchema.pre('save', async function() {
     }
 });
 
-UserSchema.methods.comparePassword = async function(candidatePassword: string) {
+UserSchema.methods.comparePassword = async function (candidatePassword: string) {
     return bcrypt.compare(candidatePassword, this.password);
 }
 
@@ -74,6 +81,7 @@ export interface UserDocument extends Document {
     password: string,
     fullName: string,
     email: string,
+    nanyangId: string,
     role: "student" | "teaching_staff" | "school_admin" | "registrar_admin",
     comparePassword: (password: string) => Promise<boolean>;
 }
