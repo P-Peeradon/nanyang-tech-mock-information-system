@@ -14,7 +14,8 @@ export default defineNuxtConfig({
     srcDir: 'app/',
     // serverDir: 'ntu-services/',
     routeRules: {
-        '/': { prerender: true }
+        '/': { prerender: true },
+        '/api/**': { cors: true, proxy: 'http://localhost:3000/api/**' }
     },
 
     devServer: {
