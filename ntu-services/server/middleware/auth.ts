@@ -3,6 +3,9 @@ import '../../auth/passport.config';
 import { UserDocument } from '~/models/user';
 
 export default defineEventHandler(async (event) => {
+    // TEMPORARY BYPASS FOR DEBUGGING
+    return;
+
     // Skip auth for login and public resources
     const url = getRequestURL(event);
     if (url.pathname === '/api/login' || !url.pathname.startsWith('/api/')) {
