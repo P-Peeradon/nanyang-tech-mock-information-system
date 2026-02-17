@@ -20,7 +20,7 @@ export default defineEventHandler(async (event) => {
         passport.authenticate('local', { session: false }, (err: Error, user: UserDocument | false, _info: { message: string }) => {
             if (err) {
                 return reject(err);
-            } 
+            }
             if (!user) {
                 // Handle authentication failure (user not found, wrong password)
                 // We resolve with `false` to indicate failure
@@ -28,7 +28,7 @@ export default defineEventHandler(async (event) => {
             }
             // Handle success
             return resolve(user);
-        })({ body }, () => {});
+        })({ body }, () => { });
     });
 
     if (!user) {
@@ -39,14 +39,15 @@ export default defineEventHandler(async (event) => {
     }
 
     try {
+        const config = useRuntimeConfig();
         const payload = {
             nanyangId: user.nanyangId,
             fullName: user.fullName,
             role: user.role
         }
 
-        const token = jwt.sign(payload, process.env.JWT_SECRET!, { expiresIn: '24h' });
-    
+        const token = jwt.sign(payload, config.jwtSecret, { expiresIn: '24h' });
+
         event.node.res.statusCode = 200; // OK
         return {
             message: 'Login successful',
