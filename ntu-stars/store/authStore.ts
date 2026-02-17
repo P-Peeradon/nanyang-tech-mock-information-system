@@ -4,7 +4,7 @@ import { ref, computed } from 'vue';
 interface userData {
     fullName: string;
     email: string;
-    role: 'student' | 'teaching_staff' | 'school_admin' | 'registrar_admin';
+    role: 'student' | 'teaching_staff' | 'intern' | 'admin';
 }
 
 export const authStore = defineStore('auth', () => {
