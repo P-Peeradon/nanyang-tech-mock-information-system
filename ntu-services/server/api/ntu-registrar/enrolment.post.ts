@@ -2,7 +2,7 @@ import connectMongo from '../../../db/mongodb';
 import Course from '../../../models/course';
 import Student from '../../../models/student';
 import Enrolment from '../../../models/enrolment';
-import pool from '../../../db/mysql';
+import enrolmentRest from '../../resource/enrolmentRest';
 import { defineEventHandler, readBody, createError } from 'h3';
 
 export default defineEventHandler(async (event) => {
@@ -64,11 +64,11 @@ export default defineEventHandler(async (event) => {
         $push: { enrolmentThisSemester: enrolment._id }
     });
 
-    await pool.execute(
-        `INSERT INTO enrolment (std_id, cos_code, enrol_time, enrol_status, enrol_sem, enrol_year) 
-         VALUES (?, ?, ?, 'Pending', 2026, 1)`,
-        [student.studentId, courseCode, enrolment.enrolledAt]
-    );
+    await enrolmentRest.createEnrolment({
+        studentId: student.studentId,
+        courseCode: courseCode,
+        enrolledAt: enrolment.enrolledAt
+    });
 
     return {
         success: true,
