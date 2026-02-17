@@ -1,7 +1,8 @@
 <template>
     <div class="hidden md:block w-[90%] mx-auto align-center">
         <UTable
-            :data="allCourse || []"
+            :data="courses || []"
+            :loading="pending"
             :columns="columns"
         >
             <template #code-cell="{ row }">
@@ -37,8 +38,12 @@
         </UTable>
     </div>
     <div class="block md:hidden">
+        <div v-if="pending" class="flex justify-center p-8">
+            <UIcon name="i-heroicons-arrow-path" class="animate-spin w-8 h-8 text-primary" />
+        </div>
         <div 
-            v-for="course in allCourse" 
+            v-else
+            v-for="course in courses" 
             :key="course.code"
             class="mb-4 border border-gray-200 rounded-lg p-4 shadow-sm bg-white"
         >
@@ -63,16 +68,30 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue';
+import { ref, computed } from 'vue';
 import type { TableColumn } from '@nuxt/ui';
 import type { coursePacket } from '../../../ntu-services/server/resource/courseRest';
 import { Course, type ICourse } from '../../../shared/course';
+import { authStore } from '../../store/authStore';
 
-const allCourse = ref<Course[]>([]);
 const selectedCourseCode = ref<string>('');
 const selectedCourseTitle = ref<string>('');
 const isEnrolModalOpen = ref<boolean>(false);
 const loading = ref<boolean>(false);
+
+const auth = authStore();
+
+const { data: fetchedCourses, refresh, pending } = useFetch<coursePacket[]>('/api/ntu-registrar/course', {
+    query: {
+        fields: 'cos_code,cos_title,cos_au'
+    },
+    method: 'GET',
+    headers: {
+        Authorization: `Bearer ${auth.getToken()}`
+    }
+});
+
+const courses = computed<Course[]>(() => (fetchedCourses.value ?? []).map((cp: coursePacket) => new Course(cp.cos_code, cp.cos_title, cp.cos_au)));
 
 const confirmEnrol = async () => {
     isEnrolModalOpen.value = false;
@@ -84,6 +103,9 @@ const confirmEnrol = async () => {
             body: { 
                 courseCode: selectedCourseCode.value, 
                 courseTitle: selectedCourseTitle.value 
+            },
+            headers: {
+                Authorization: `Bearer ${auth.getToken()}`
             }
         });
     } catch (error) {
@@ -96,7 +118,7 @@ const confirmEnrol = async () => {
 const handleEnrol = async (courseCode: string) => {
     isEnrolModalOpen.value = true;
     selectedCourseCode.value = courseCode;
-    selectedCourseTitle.value = allCourse.value.find((course) => course.code === courseCode)?.title || '';
+    selectedCourseTitle.value = (courses.value || []).find((course: Course) => course.code === courseCode)?.title || '';
 };
 
 const columns: TableColumn<ICourse>[] = [
@@ -131,27 +153,4 @@ const columns: TableColumn<ICourse>[] = [
         id: 'action'
     }
 ];
-
-onMounted(async () => {
-    try {
-
-        const { data: courses, status, error } = await useFetch<coursePacket[]>('/api/ntu-registrar/course', {
-            method: 'get',
-            query: {
-                fields: 'cos_code,cos_title,cos_au'
-            }
-        });
-
-        allCourse.value = courses.value?.map((course: coursePacket) => {
-            const { cos_code, cos_title, cos_au } = course;
-
-            return new Course(cos_code, cos_title, cos_au);
-        }) || [];
-
-    } catch (error) {
-        console.error('Error fetching courses: ', error);
-    }
-    
-    
-});
 </script>
