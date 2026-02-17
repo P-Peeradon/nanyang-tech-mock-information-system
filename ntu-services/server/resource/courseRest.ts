@@ -32,13 +32,17 @@ async function retrieveCourse({ option, code }: { option?: string[], code?: stri
         let query: string = `SELECT ${fieldsToSelect} FROM course`;
         const params: (string | number)[] = [];
 
+        console.log('Executing query:', query);
+
         if (code) {
             query += ' WHERE cos_code = ?';
             params.push(code);
             const [rows, _field] = await pool.execute<coursePacket[]>(query, [code]);
+            console.log('Single course found:', rows[0]);
             return rows[0];
         } else {
             const [rows, _field] = await pool.execute<coursePacket[]>(query);
+            console.log('Courses retrieved count:', rows.length);
             return rows;
         }
 
