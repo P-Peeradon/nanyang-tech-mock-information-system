@@ -68,11 +68,18 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from 'vue';
+import { ref } from 'vue';
 import type { TableColumn } from '@nuxt/ui';
 import type { coursePacket } from '../../../ntu-services/server/resource/courseRest';
 import { Course, type ICourse } from '../../../shared/course';
 import { authStore } from '../../store/authStore';
+
+interface CourseTableProps {
+    courses: Course[];
+    pending: boolean;
+};
+
+const props = defineProps<CourseTableProps>();
 
 const selectedCourseCode = ref<string>('');
 const selectedCourseTitle = ref<string>('');
@@ -80,18 +87,6 @@ const isEnrolModalOpen = ref<boolean>(false);
 const loading = ref<boolean>(false);
 
 const auth = authStore();
-
-const { data: fetchedCourses, refresh, pending } = useFetch<coursePacket[]>('/api/ntu-registrar/course', {
-    query: {
-        fields: 'cos_code,cos_title,cos_au'
-    },
-    method: 'GET',
-    headers: {
-        Authorization: `Bearer ${auth.getToken()}`
-    }
-});
-
-const courses = computed<Course[]>(() => (fetchedCourses.value ?? []).map((cp: coursePacket) => new Course(cp.cos_code, cp.cos_title, cp.cos_au)));
 
 const confirmEnrol = async () => {
     isEnrolModalOpen.value = false;
@@ -118,7 +113,7 @@ const confirmEnrol = async () => {
 const handleEnrol = async (courseCode: string) => {
     isEnrolModalOpen.value = true;
     selectedCourseCode.value = courseCode;
-    selectedCourseTitle.value = (courses.value || []).find((course: Course) => course.code === courseCode)?.title || '';
+    selectedCourseTitle.value = (props.courses || []).find((course: Course) => course.code === courseCode)?.title || '';
 };
 
 const columns: TableColumn<ICourse>[] = [
