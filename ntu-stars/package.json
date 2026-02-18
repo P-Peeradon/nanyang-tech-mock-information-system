@@ -22,7 +22,8 @@
     "axios": "^1.13.2",
     "nuxt": "^4.2.2",
     "pinia": "^3.0.4",
-    "temporal-polyfill": "^0.3.0"
+    "temporal-polyfill": "^0.3.0",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@nuxt/eslint": "^1.12.1",
