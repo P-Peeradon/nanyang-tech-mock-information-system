@@ -21,7 +21,7 @@ export default defineAppConfig({
                 root: 'relative isolate w-full',
                 container: 'flex lg:flex flex-row justify-center items-center gap-6 py-0 sm:py-0 lg:py-0 lg:px-20 xl:px-40',
                 title: 'flex flex-row text-secondary-600 ps-20',
-                body: 'flex lg:flex'
+                body: 'flex lg:flex flex-col gap-4'
             }
         },
         pageFeature: {

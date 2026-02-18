@@ -1,6 +1,9 @@
 <script setup>
 import WebBanner from './components/WebBanner.vue';
 
+const auth = authStore();
+auth.tryAutoLogin();
+
 useHead({
     meta: [
         { name: 'viewport', content: 'width=device-width, initial-scale=1' }
