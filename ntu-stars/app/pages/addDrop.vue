@@ -10,7 +10,7 @@
                         Enrol in Course
                     </h2>
                 </template>
-                <template #default>
+                <template #body>
                     <CourseTable :courses="courses" :pending="pending" />
                 </template>
             </UPageSection>
@@ -20,7 +20,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue';
-import { authStore } from '../../store/authStore';
+import { authStore } from '../store/authStore';
 import type { coursePacket } from '../../../ntu-services/server/resource/courseRest';
 import { Course } from '../../../shared/course';
 
