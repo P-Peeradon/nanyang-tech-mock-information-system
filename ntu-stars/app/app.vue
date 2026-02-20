@@ -1,5 +1,6 @@
 <script setup>
 import WebBanner from './components/WebBanner.vue';
+import { authStore } from './store/authStore';
 
 const auth = authStore();
 auth.tryAutoLogin();
