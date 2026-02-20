@@ -7,7 +7,7 @@ import User from '../models/user';
 export type JWTToken = {
     userId: string,
     fullName: string,
-    role: ['student', 'teaching_staff', 'school_admin', 'registrar_admin']
+    role: ['student', 'staff', 'admin', 'intern']
 }
 
 passport.use(new LocalStrategy({
@@ -18,18 +18,18 @@ passport.use(new LocalStrategy({
         const user = await User.findOne({
             $or: [
                 { nanyangId: username.toUpperCase() },
-                { email: { $regex: new RegExp(`^${username.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`, 'i') } }
+                { email: username.toLowerCase() }
             ]
         });
 
         if (!user) {
-            return done(null, false, { message: 'Incorrect Student ID/Email or password.' });
+            return done(null, false, { message: 'Incorrect Nanyang ID/Email.' });
         }
 
         const isMatch = await bcrypt.compare(password, user.password);
 
         if (!isMatch) {
-            return done(null, false, { message: 'Incorrect Student ID/Email or password.' });
+            return done(null, false, { message: 'Password incorrect.' });
         }
 
         return done(null, user)

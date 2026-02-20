@@ -43,7 +43,7 @@ const UserSchema = new mongoose.Schema({
     },
     role: {
         type: String,
-        enum: ['student', 'teaching_staff', 'school_admin', 'registrar_admin'],
+        enum: ['student', 'staff', 'admin', 'intern'],
         required: true,
     }
 }, baseOptions);
@@ -82,7 +82,7 @@ export interface UserDocument extends Document {
     fullName: string,
     email: string,
     nanyangId: string,
-    role: "student" | "teaching_staff" | "school_admin" | "registrar_admin",
+    role: "student" | "staff" | "admin" | "intern",
     comparePassword: (password: string) => Promise<boolean>;
 }
 
