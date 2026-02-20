@@ -72,7 +72,7 @@ import { ref } from 'vue';
 import type { TableColumn } from '@nuxt/ui';
 import type { coursePacket } from '../../../ntu-services/server/resource/courseRest';
 import { Course, type ICourse } from '../../../shared/course';
-import { authStore } from '../../store/authStore';
+import { authStore } from '../store/authStore';
 
 interface CourseTableProps {
     courses: Course[];
