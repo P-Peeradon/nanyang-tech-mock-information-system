@@ -12,7 +12,7 @@ export default defineEventHandler(async (event) => {
     if (!courseCode) {
         throw createError({
             statusCode: 400,
-            statusMessage: 'Course code is required'
+            statusMessage: '400 Bad Request: Course code is required'
         });
     };
 
@@ -22,7 +22,7 @@ export default defineEventHandler(async (event) => {
     if (!authUser) {
         throw createError({
             statusCode: 401,
-            statusMessage: 'Unauthorized'
+            statusMessage: '401 Unauthorized: You cannot use the api.'
         });
     }
 
@@ -33,7 +33,7 @@ export default defineEventHandler(async (event) => {
     if (!course) {
         throw createError({
             statusCode: 404,
-            statusMessage: 'Course not found'
+            statusMessage: `404 Not Found: Course ${courseCode} not found.`
         });
     };
 
@@ -42,7 +42,7 @@ export default defineEventHandler(async (event) => {
     if (!student) {
         throw createError({
             statusCode: 404,
-            statusMessage: 'Student not found'
+            statusMessage: `404 Not Found: Student ${studentIdToEnrol} not found.`
         });
     };
 
@@ -50,9 +50,9 @@ export default defineEventHandler(async (event) => {
     if (authUser.role !== 'admin' && authUser.nanyangId !== student.studentId) {
         throw createError({
             statusCode: 403,
-            statusMessage: 'Forbidden: You can only enroll yourself.'
+            statusMessage: '403 Forbidden: You can only enroll yourself.'
         });
-    }
+    };
 
     const enrolment = await Enrolment.create({
         course: course._id,
@@ -69,6 +69,8 @@ export default defineEventHandler(async (event) => {
         courseCode: courseCode,
         enrolledAt: enrolment.enrolledAt
     });
+
+    setResponseStatus(event, 201);
 
     return {
         success: true,
