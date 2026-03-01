@@ -46,7 +46,7 @@ export default defineEventHandler(async (event) => {
         const config = useRuntimeConfig();
         const payload = {
             nanyangId: user.nanyangId,
-            fullName: user.fullName,
+            fullName: user.firstName + ' ' + user.lastName,
             role: user.role
         }
 
@@ -57,7 +57,7 @@ export default defineEventHandler(async (event) => {
             token: token,
             user: {
                 nanyangId: user.nanyangId,
-                fullName: user.fullName,
+                fullName: user.firstName + ' ' + user.lastName,
                 role: user.role,
             }
         }
