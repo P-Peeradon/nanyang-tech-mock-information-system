@@ -32,7 +32,8 @@ import { ref } from 'vue';
 const loginLinks = ref<ButtonProps[]>([
     {
         label: 'NTU Student',
-        color: 'primary'
+        color: 'primary',
+        onClick: (event: MouseEvent) => { navigateTo('/login') }
     },
     {
         label: 'NTU Alumni',
