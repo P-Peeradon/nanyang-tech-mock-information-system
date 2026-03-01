@@ -17,9 +17,9 @@ const courseSchema = new Schema({
 const Course = mongoose.model('Course', courseSchema);
 
 export interface CourseDocument extends Document {
-    courseCode: string;
+    code: string;
     title: string;
-    description: string;
+    description?: string;
     au: number;
     school: mongoose.Types.ObjectId;
     prerequisites: mongoose.Types.ObjectId[];

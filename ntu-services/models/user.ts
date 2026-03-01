@@ -2,26 +2,31 @@ import mongoose, { type Document } from "mongoose";
 import bcrypt from "bcryptjs";
 
 const baseOptions = {
-    discriminatorKey: 'userType', // This is the crucial field Mongoose will use
+    discriminatorKey: 'role', // This is the crucial field Mongoose will use
     timestamps: true,
 };
 
 const UserSchema = new mongoose.Schema({
-    fullName: {
+    firstName: {
         type: String,
         required: true,
         trim: true,
     },
-    userType: {
-        type: ['student', 'staff', 'admin', 'intern'],
+    lastName: {
+        type: String,
         required: true,
-        trim: true
+        trim: true,
+    },
+    role: {
+        type: String,
+        enum: ['student', 'staff', 'admin', 'intern'],
+        required: true,
     },
     phone: {
         type: String,
         required: true,
         unique: true,
-        regex: '^+65 [/d]{2} [/d]{3} [/d]{4}$'
+        match: /^\+65 \d{2} \d{3} \d{4}$/
     },
     email: {
         type: String,
@@ -29,6 +34,7 @@ const UserSchema = new mongoose.Schema({
         unique: true,
         lowercase: true,
         trim: true,
+        match: /^[a-z]\.[a-z]+[0-9]{4}@(student)?\.nanyang\.edu\.sg$/
     },
     nanyangId: {
         type: String,
@@ -41,11 +47,7 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    role: {
-        type: String,
-        enum: ['student', 'staff', 'admin', 'intern'],
-        required: true,
-    }
+
 }, baseOptions);
 
 UserSchema.pre('save', async function () {
@@ -70,19 +72,35 @@ UserSchema.pre('save', async function () {
     }
 });
 
+UserSchema.pre('findOneAndDelete', async function (next: any) {
+    const userId: mongoose.Types.ObjectId = this.getQuery()._id;
+
+    try {
+        // Automatically remove the corresponding student record
+        await mongoose.model('Student').deleteMany({ user: userId });
+        next();
+    } catch (err: any) {
+        next(err);
+    }
+});
+
+UserSchema.virtual('fullName').get(function () {
+    return `${this.firstName} ${this.lastName}`;
+});
+
 UserSchema.methods.comparePassword = async function (candidatePassword: string) {
     return bcrypt.compare(candidatePassword, this.password);
-}
+};
 
 const User = mongoose.model<UserDocument>('user', UserSchema);
 
 export interface UserDocument extends Document {
-    userType: 'student' | 'staff' | 'admin' | 'intern',
+    role: 'student' | 'staff' | 'admin' | 'intern',
     password: string,
-    fullName: string,
+    firstName: string,
+    lastName: string,
     email: string,
     nanyangId: string,
-    role: "student" | "staff" | "admin" | "intern",
     comparePassword: (password: string) => Promise<boolean>;
 }
 
